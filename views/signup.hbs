@@ -1,30 +1,48 @@
 {{> welcomemenu id="signup"}}
 
 <div class="ui two column middle aligned grid basic segment">
-    <div class="column">   
-      <form class="ui stacked segment form" action="/register" method="POST">
-        <h3 class="ui header">Register</h3>
-        <div class="two fields">
-          <div class="field">
-            <label>First Name</label>
-            <input placeholder="First Name" type="text"  name="firstName">
-          </div>
-          <div class="field">
-            <label>Last Name</label>  
-            <input placeholder="Last Name" type="text"  name="lastName">
+  
+  <div class="column">
+    <form class="ui stacked segment form" action="/register" method="POST">
+      <h3 class="ui header">Register</h3>
+      <div class="one field">
+        <div class="field">
+          <label>Name</label>
+          <input placeholder="Name" type="text" name="name">
+        </div>
+      </div>
+      <div class="three fields">
+        <div class="field">
+          <div class="ui right labeled input">
+            <input placeholder="Enter Height" type="text" name="height">
+            <div class="ui basic label">
+              m
+            </div>
           </div>
         </div>
         <div class="field">
-          <label>Email</label>
-          <input placeholder="Email" type="text" name="email">
+          <div class="ui right labeled input">
+            <input placeholder="Enter Weight" type="text" name="weight">
+            <div class="ui basic label">
+              kg
+            </div>
+          </div>
         </div>
-        <div class="field">
-          <label>Password</label>
-          <input type="password" name="password">
+        <div class="field" >
+          <input placeholder="Gender" type="text" name="gender">
         </div>
-        <button class="ui blue submit button">Submit</button>
-      </form>
-  </div>  
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input placeholder="Email" type="text" name="email">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" name="password">
+      </div>
+      <button class="ui blue submit button">Submit</button>
+    </form>
+  </div> 
   <div class="column">
     <img class="ui image" src="https://cdn.glitch.com/66c07852-af90-498c-9391-8e09e0829205%2Fseticon.jpg?v=1599158724344">
   </div>

@@ -1,0 +1,60 @@
+<table class="ui table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Weight</th>
+      <th>Chest</th>
+      <th>Thigh</th>
+      <th>Upper Arm</th>
+      <th>Waist</th>
+      <th>Hips</th>
+      <th>Trend</th>
+      <th>Comment</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each assessment.songs}}
+      <tr>
+        <td>
+          {{timestamp}}
+        </td>
+        <td>
+          {{weight}}
+        </td>
+        <td>
+          {{chest}}
+        </td>
+        <td>
+          {{thigh}}
+        </td>
+        <td>
+          {{upperarm}}
+        </td>
+        <td>
+          {{waist}}
+        </td>
+        <td>
+          {{hips}}
+        </td>
+        <td>
+          
+        </td>
+        <td>
+          {{comment}}
+        </td>
+        <td>
+          <a href="/song/{{../assessment.id}}/editsong/{{id}}" class="ui icon button">
+            <i class="pencil alternate icon"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/assessment/{{../assessment.id}}/deleteassessment/{{id}}" class="ui icon button">
+            <i class="icon trash"></i>
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

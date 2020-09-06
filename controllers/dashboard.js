@@ -2,7 +2,7 @@
 
 const accounts = require("./accounts.js");
 const logger = require("../utils/logger");
-const playlistStore = require("../models/playlist-store");
+const assessmentStore = require("../models/assessment-store");
 const uuid = require("uuid");
 
 const dashboard = {
@@ -10,30 +10,36 @@ const dashboard = {
     logger.info("dashboard rendering");
     const loggedInUser = accounts.getCurrentUser(request);
     const viewData = {
-      title: "Playlist Dashboard",
-      playlists: playlistStore.getUserPlaylists(loggedInUser.id)
+      title: "Assessment Dashboard",
+      assessments: assessmentStore.getUserAssessments(loggedInUser.id)
     };
-    logger.info("about to render", playlistStore.getAllPlaylists());
+    logger.info("about to render", assessmentStore.getAllAssessments());
     response.render("dashboard", viewData);
   },
 
-  deletePlaylist(request, response) {
-    const playlistId = request.params.id;
-    logger.debug(`Deleting Playlist ${playlistId}`);
-    playlistStore.removePlaylist(playlistId);
+  deleteAssessment(request, response) {
+    const assessmentId = request.params.id;
+    logger.debug(`Deleting Assessment ${assessmentId}`);
+    assessmentStore.removeAssessment(assessmentId);
     response.redirect("/dashboard");
   },
 
-  addPlaylist(request, response) {
+  addAssessment(request, response) {
     const loggedInUser = accounts.getCurrentUser(request);
-    const newPlayList = {
+    const newAssessment = {
       id: uuid.v1(),
       userid: loggedInUser.id,
-      title: request.body.title,
-      songs: []
+      weight: request.body.weight,
+      chest: request.body.chest,
+      thigh: request.body.thigh,
+      upperarm: request.body.upperarm,
+      waist: request.body.waist,
+      hips: request.body.hips,
+      comment: "",
+      timestamp: Date.now()
     };
-    logger.debug("Creating a new Playlist", newPlayList);
-    playlistStore.addPlaylist(newPlayList);
+    logger.debug("Creating a new Assessment", newAssessment);
+    assessmentStore.addAssessment(newAssessment);
     response.redirect("/dashboard");
   }
 };

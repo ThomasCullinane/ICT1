@@ -1,4 +1,4 @@
-Welcome to the Playlist 4
+Welcome to the Glitch Gym
 =========================
 
-Version 4 of the Playlist application
+Glitch Gym application

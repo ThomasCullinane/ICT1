@@ -17,10 +17,6 @@ const assessmentStore = {
     return this.store.findOneBy(this.collection, { id: id });
 
   },
-  getSong(id, songId) {
-    const assessment = this.store.findOneBy(this.collection, { id: id });
-    const songs = assessment.songs.filter(song => song.id == songId);
-    return songs[0];},
   
   getUserAssessments(userid) {
     return this.store.findBy(this.collection, { userid: userid });
@@ -47,38 +43,6 @@ const assessmentStore = {
     this.store.save();
   },
 
-  addSong(id, song) {
-    const assessment = this.getAssessment(id);
-    assessment.songs.push(song);
-
-    let duration = 0;
-    for (let i = 0; i < assessment.songs.length; i++) {
-      duration += assessment.songs[i].duration;
-    }
-
-    assessment.duration = duration;
-    this.store.save();
-  },
-
-  removeSong(id, songId) {
-    const assessment = this.getAssessment(id);
-    const songs = assessment.songs;
-    _.remove(songs, { id: songId });
-    this.store.save();
-  },
-
-  getSong(id, songId) {
-    const assessment = this.store.findOneBy(this.collection, { id: id });
-    const songs = assessment.songs.filter(song => song.id == songId);
-    return songs[0];
-  },
-
-  updateSong(song, updatedSong) {
-    song.title = updatedSong.title;
-    song.artist = updatedSong.artist;
-    song.duration = updatedSong.duration;
-    this.store.save();
-  }
 };
 
 module.exports = assessmentStore;

@@ -17,7 +17,7 @@ class JsonStore {
   add(collection, obj) {
     this.db
       .get(collection)
-      .push(obj)
+      .unshift(obj)
       .last()
       .value();
   }

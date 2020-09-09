@@ -3,7 +3,7 @@
     {
       "name": "Homer Simpson",
       "height": 2.1,
-      "weight": 110,
+      "weight": 130,
       "gender": "m",
       "email": "homer@simpson.com",
       "password": "secret",

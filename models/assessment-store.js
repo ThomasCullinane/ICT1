@@ -27,7 +27,7 @@ getSong(id, songId) {
   },
 
   addAssessment(assessment) {
-    this.store.add(this.collection, assessment);
+    this.store.add(this.collection,assessment);
     this.store.save();
   },
 

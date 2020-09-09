@@ -2,6 +2,7 @@
 
 const accounts = require("./accounts.js");
 const logger = require("../utils/logger");
+const analytics = require("../utils/analytics");
 const assessmentStore = require("../models/assessment-store");
 const uuid = require("uuid");
 
@@ -9,9 +10,16 @@ const dashboard = {
   index(request, response) {
     logger.info("dashboard rendering");
     const loggedInUser = accounts.getCurrentUser(request);
+    
+    const BMI = analytics.getBMI(loggedInUser,assessmentStore.getUserAssessments(loggedInUser.id)) ;
+    
     const viewData = {
       title: "Assessment Dashboard",
-      assessments: assessmentStore.getUserAssessments(loggedInUser.id)
+      assessments: assessmentStore.getUserAssessments(loggedInUser.id),
+      BMI: BMI,
+      BMICategory: analytics.getBMICategory(BMI),
+      user: loggedInUser,
+      isIdealBodyWeight: analytics.isIdealBodyWeight(loggedInUser,assessmentStore.getUserAssessments(loggedInUser.id))
     };
     logger.info("about to render", assessmentStore.getAllAssessments());
     response.render("dashboard", viewData);
@@ -25,18 +33,19 @@ const dashboard = {
   },
 
   addAssessment(request, response) {
-    const loggedInUser = accounts.getCurrentUser(request);
+    const loggedInUser = accounts.getCurrentUser(request); 
+    var ts = new Date().toJSON();
     const newAssessment = {
       id: uuid.v1(),
       userid: loggedInUser.id,
-      weight: request.body.weight,
-      chest: request.body.chest,
-      thigh: request.body.thigh,
-      upperarm: request.body.upperarm,
-      waist: request.body.waist,
-      hips: request.body.hips,
+      weight: parseFloat(request.body.weight),
+      chest: parseFloat(request.body.chest),
+      thigh: parseFloat(request.body.thigh),
+      upperarm: parseFloat(request.body.upperarm),
+      waist: parseFloat(request.body.waist),
+      hips: parseFloat(request.body.hips),
       comment: "",
-      timestamp: Date.now()
+      timestamp: ts
     };
     logger.debug("Creating a new Assessment", newAssessment);
     assessmentStore.addAssessment(newAssessment);

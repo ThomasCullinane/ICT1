@@ -1,5 +1,5 @@
 {
-  "name": "Glitch Bym",
+  "name": "glitchgym",
   "version": "0.0.1",
   "description": "Glitch Gym application for ICT1",
   "main": "server.js",
@@ -22,7 +22,7 @@
     "node": "12.x"
   },
   "repository": {
-    "url": "https://github.com/ThomasCullinane/ICT1"
+    "url": "https://github.com/ThomasCullinane/ICT1/glitch"
   },
   "license": "MIT",
   "keywords": [

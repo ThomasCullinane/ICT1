@@ -21,10 +21,10 @@ const dashboard = {
       user: loggedInUser,
       isIdealBodyWeight: analytics.isIdealBodyWeight(loggedInUser,assessmentStore.getUserAssessments(loggedInUser.id))
     };
-    logger.info("about to render", assessmentStore.getAllAssessments());
+    logger.info("about to render", assessmentStore.getUserAssessments(loggedInUser.id));
     response.render("dashboard", viewData);
   },
-
+ 
   deleteAssessment(request, response) {
     const assessmentId = request.params.id;
     logger.debug(`Deleting Assessment ${assessmentId}`);
@@ -35,7 +35,7 @@ const dashboard = {
   addAssessment(request, response) {
     const loggedInUser = accounts.getCurrentUser(request); 
     var ts = new Date().toJSON();
-    const newAssessment = {
+    var newAssessment = {
       id: uuid.v1(),
       userid: loggedInUser.id,
       weight: parseFloat(request.body.weight),
@@ -44,9 +44,11 @@ const dashboard = {
       upperarm: parseFloat(request.body.upperarm),
       waist: parseFloat(request.body.waist),
       hips: parseFloat(request.body.hips),
+      trend: false,
       comment: "",
       timestamp: ts
     };
+    newAssessment.trend = analytics.getTrend(loggedInUser,newAssessment,assessmentStore.getUserAssessments(loggedInUser.id));
     logger.debug("Creating a new Assessment", newAssessment);
     assessmentStore.addAssessment(newAssessment);
     response.redirect("/dashboard");

@@ -1,3 +1,5 @@
+{{> trainermenu id="dashboard"}}
+
 <table class="ui table">
   <thead>
     <tr>
@@ -16,6 +18,7 @@
   </thead>
   <tbody>
     {{#each assessments}}
+    <form class="ui stacked segment form" action="/trainerdashboard/updateassessment/{{id}}" method="POST">    
       <tr>
         <td>
           {{timestamp}}
@@ -39,24 +42,20 @@
           {{hips}}
         </td>
         <td>
-          {{#if trend}}
-          <i class="ui teal tag label"></i> 
-          {{else }}
-          <i class="ui red tag label"></i>
-          {{/if}}
-        </td>
-        <td>
-          {{comment}}
-        </td>
-        <td>
           
         </td>
         <td>
-          <a href="/dashboard/deleteassessment/{{id}}" class="ui icon button">
-            <i class="icon trash"></i>
-          </a>
+          <input placeholder="{{comment}}" type="text" name="comment"> 
+        </td>
+        <td>
+          <button class="ui blue submit button"> Update </button>
+                      
+        </td>
+        <td>
+                    
         </td>
       </tr>
+     </form>
     {{/each}}
   </tbody>
 </table>

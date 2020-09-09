@@ -17,7 +17,7 @@ const assessmentStore = {
     return this.store.findOneBy(this.collection, { id: id });
 
   },
-getSong(id, songId) {
+  getSong(id, songId) {
     const assessment = this.store.findOneBy(this.collection, { id: id });
     const songs = assessment.songs.filter(song => song.id == songId);
     return songs[0];},
@@ -34,6 +34,11 @@ getSong(id, songId) {
   removeAssessment(id) {
     const assessment = this.getAssessment(id);
     this.store.remove(this.collection, assessment);
+    this.store.save();
+  },
+  
+  updateAssessment(assessment,newAssessment) {
+    assessment.comment = newAssessment.comment;
     this.store.save();
   },
 

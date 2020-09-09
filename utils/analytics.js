@@ -13,6 +13,22 @@ const analytics = {
     }
   },
   
+  getTrend(user,newAssessment,assessments) {
+    var weight = newAssessment.weight;
+    var previousweight
+    try{
+      previousweight = assessments[0].weight    
+    }
+    catch{
+      previousweight = user.weight    
+    }
+    var weightIncrease = false;
+    if(weight>previousweight) {
+      weightIncrease = true;
+    }
+    return weightIncrease;
+  },
+  
   isIdealBodyWeight(user,assessments) {
     var weight
     try{

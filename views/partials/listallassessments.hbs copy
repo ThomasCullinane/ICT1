@@ -39,17 +39,15 @@
           {{hips}}
         </td>
         <td>
-          {{#if trend}}
-          <i class="ui teal tag label"></i> 
-          {{else }}
-          <i class="ui red tag label"></i>
-          {{/if}}
+          
         </td>
         <td>
           {{comment}}
         </td>
         <td>
-          
+          <a href="/song/{{../assessment.id}}/editassessment/{{id}}" class="ui icon button">
+            <i class="pencil alternate icon"></i>
+          </a>
         </td>
         <td>
           <a href="/dashboard/deleteassessment/{{id}}" class="ui icon button">

@@ -1,0 +1,16 @@
+{
+  "trainers": [
+    {
+      "name": "Trainer1",
+      "email": "trainer1@simpson.com",
+      "password": "secret",
+      "id": "3ad84697-6d98-4d80-8673-084de533a86c0"
+    },
+    {
+      "name": "Trainer2",
+      "email": "trainer2@simpson.com",
+      "password": "secret",
+      "id": "2b6h8989-7b6f-4a34-ad26-aa06b955y751"
+    }
+  ]
+}

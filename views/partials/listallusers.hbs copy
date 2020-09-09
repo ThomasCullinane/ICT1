@@ -1,0 +1,22 @@
+<table class="ui table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each assessments}}
+      <tr>
+        <td>
+          {{name}}
+        </td>
+        <td>
+          <a href="/dashboard/deleteuser/{{id}}" class="ui icon button">
+            <i class="icon trash"></i>
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
